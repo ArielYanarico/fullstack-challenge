@@ -1,12 +1,17 @@
 
 import { GET_CARS_GQL } from "@/services/carService";
 import { Cars } from "@/types/carTypes";
-import { ApolloError, OperationVariables, useQuery } from "@apollo/client";
+import { ApolloError, ApolloQueryResult, OperationVariables, useQuery } from "@apollo/client";
+
+type CarQueryResult = {
+  cars: Cars
+}
 
 type UseCarsResult = {
   loading: boolean;
   error?: ApolloError;
   cars: Cars;
+  refetch: () => Promise<ApolloQueryResult<CarQueryResult>>;
 };
 
 export function useCars(): UseCarsResult {
@@ -23,7 +28,7 @@ export function useCars(): UseCarsResult {
     }
   }
 
-  const { loading, error, data } = useQuery<{ cars: Cars }>(GET_CARS_GQL, queryVariables);
+  const { loading, error, data, refetch } = useQuery<CarQueryResult>(GET_CARS_GQL, queryVariables);
 
-  return { loading, error, cars: data?.cars || [] }
+  return { loading, error, cars: data?.cars || [], refetch }
 }

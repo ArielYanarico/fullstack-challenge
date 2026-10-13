@@ -5,10 +5,11 @@ import { Button, Container, Stack, TextField, Typography } from "@mui/material";
 import { useRef } from "react";
 
 export function Cars() {
-  const { loading, error, cars } = useCars();
+  const { loading, error, cars, refetch } = useCars();
   console.log({ loading, error, cars });
 
   const createCarModal = useRef(defaultCarModalRef);
+  const handleSubmit = () => refetch();
 
   return (
     <Container maxWidth="md" sx={{ py: 6 }} >
@@ -30,7 +31,7 @@ export function Cars() {
 
       <CarCardGrid cars={cars} loading={loading}/>
 
-      <CreateCarModal ref={createCarModal}/>
+      <CreateCarModal ref={createCarModal} onSubmit={handleSubmit}/>
     </Container>
   )
 }

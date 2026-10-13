@@ -10,6 +10,7 @@ interface CarCardGridProps {
 }
 
 export function CarCardGrid({ cars, loading }: CarCardGridProps) {
+console.log(cars);
 
   if (loading) {
     return <LoadingState />

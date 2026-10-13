@@ -20,3 +20,18 @@ export const GET_CARS_GQL = gql`
     }
   }
 `;
+
+export const CREATE_CAR_GQL = gql`
+  mutation CreateCar($input: CreateCarInput!) {
+    createCar(input: $input) {
+      id
+      make
+      model
+      year
+      color
+      mobile
+      tablet
+      desktop
+    }
+  }
+`;

@@ -3,13 +3,13 @@ import { GET_CARS_GQL } from "@/services/carService";
 import { Cars } from "@/types/carTypes";
 import { ApolloError, OperationVariables, useQuery } from "@apollo/client";
 
-type useCarResult = {
+type UseCarsResult = {
   loading: boolean;
   error?: ApolloError;
   cars: Cars;
 };
 
-export function useCars(): useCarResult {
+export function useCars(): UseCarsResult {
 
   const isMobileDevice = window.innerWidth <= 639;
   const isTabletDevice = window.innerWidth >= 640 && window.innerWidth < 1023;

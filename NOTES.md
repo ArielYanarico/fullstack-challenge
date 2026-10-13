@@ -26,16 +26,17 @@ Keep it short; bullets are fine.
 
 <!-- Scope you consciously cut. Naming a trade-off reads better than silence. -->
 
+## Decisions and trade-offs
+
 * Images are served per breakpoint, However they are not served reactively when browser size is updated.
   * Why? In my mind it is more performant, because the request to API is not getting all images and rendering them according the windows size, instead I am doing the API call only with the image required for my windows size so I am requesting for less resources and getting a faster result.
-
-## Decisions and trade-offs
 
 <!-- Structure, state management, where filtering happens, what you tested and
      what you didn't, any library you added and why. -->
 
 ## If I had another day
 
+* Improve Design and Responsiveness
 <!-- What you would do next, in priority order. -->
 
 ## Anything you should know to run it

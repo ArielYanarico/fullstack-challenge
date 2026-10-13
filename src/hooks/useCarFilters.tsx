@@ -6,16 +6,12 @@ export function useCarFilter() {
 
   const variables = useMemo(
     () => ({
-      ...(filters.model?.trim()
-        ? { model: filters.model.trim() }
-        : {}),
-      ...(filters.year != null
-        ? { year: filters.year }
-        : {}),
+      model: filters.model?.trim() || undefined,
+      year: filters.year ?? undefined,
     }),
     [filters]
   );
-console.log(variables);
+
   return {
     setFilters,
     variables,

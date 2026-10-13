@@ -11,9 +11,7 @@ export function SearchInput({ onChange }: SearchInputProps) {
   const debouncedSearchTerm = useDebounce(searchTerm as string);
 
   useEffect(() => {
-    if (debouncedSearchTerm) {
-      onChange(debouncedSearchTerm);
-    }
+    onChange(debouncedSearchTerm);
   }, [debouncedSearchTerm]);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -28,6 +26,7 @@ export function SearchInput({ onChange }: SearchInputProps) {
       variant="outlined"
       value={searchTerm}
       onChange={handleChange}
+      sx={{ minWidth: '210px' }}
     />
   )
 }

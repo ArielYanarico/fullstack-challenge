@@ -6,7 +6,7 @@ type SearchInputProps = {
 }
 
 const yearOptions = [
-  { label: 'All', value: '' },
+  { label: 'All', value: 'All' },
   { label: '2021', value: '2021' },
   { label: '2022', value: '2022' },
   { label: '2023', value: '2023' },
@@ -15,7 +15,7 @@ const yearOptions = [
 ];
 
 export function YearFilter({ onChange }: SearchInputProps) {
-  const [year, setYear] = useState<string>('');
+  const [year, setYear] = useState<string>('All');
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { target: { value } } = event;
@@ -31,6 +31,7 @@ export function YearFilter({ onChange }: SearchInputProps) {
       value={year}
       onChange={handleChange}
       select
+      sx={{ minWidth: '210px' }}
     >
       {yearOptions.map((option) => (
         <MenuItem key={option.value} value={option.value}>

@@ -7,12 +7,12 @@ Keep it short; bullets are fine.
 
 ### Required
 
-1. [ ] Fetch and display the car list from the mock GraphQL API (GetCars).
+1. [x] Fetch and display the car list from the mock GraphQL API (GetCars).
 2. [ ] Serve a different image per breakpoint: mobile ≤639px, tablet 640–1023px, desktop ≥1024px.
-3. [ ] Present the list using Material UI, with loading, error and empty states handled.
+3. [x] Present the list using Material UI, with loading, error and empty states handled.
 4. [ ] Add a form that creates a new car through the CreateCar mutation and updates the list.
 5. [ ] Add a search field that filters by model, and a sort control.
-6. [ ] Move the data-fetching logic into a custom hook, useCars().
+6. [x] Move the data-fetching logic into a custom hook, useCars().
 7. [ ] Write unit tests for the components and hooks you add.
 
 ### Nice to have

@@ -1,9 +1,9 @@
+import { CarCardGrid } from "@/components/ui/CarCardGrid";
 import { useCars } from "@/hooks/useCars";
-import { Button, Card, CardContent, CardMedia, Chip, Container, Grid, Stack, TextField, Typography } from "@mui/material";
+import { Button, Container, Stack, TextField, Typography } from "@mui/material";
 
 
 export function Cars() {
-
   const { loading, error, cars } = useCars();
   console.log({ loading, error, cars });
 
@@ -25,24 +25,7 @@ export function Cars() {
         </Container>
       </Stack>
 
-      <Grid container spacing={2}>
-        {(cars).map((car: any) => (
-          <Grid size={4} key={car.id}>
-            <Card sx={{ maxWidth: 345 }}>
-              <CardMedia
-                sx={{ height: 140 }}
-                image={car.desktop}
-              />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  {car.make} {car.model} {car.year}
-                </Typography>
-                <Chip label={car.color} size="small" sx={{ alignSelf: "start" }} />
-              </CardContent>
-            </Card>
-          </Grid>
-        ))}
-      </Grid>
+      <CarCardGrid cars={cars} loading={loading}/>
 
     </Container>
   )

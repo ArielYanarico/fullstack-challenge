@@ -1,24 +1,13 @@
 
 import { GET_CARS_GQL } from "@/services/carService";
+import { Cars } from "@/types/carTypes";
 import { ApolloError, useQuery } from "@apollo/client";
 
-type Car = {
-  id: string;
-  make: string;
-  model: string;
-  year: number;
-  color: string;
-  mobile: string;
-  tablet: string;
-  desktop: string;
-};
-
-type Cars = Car[];
 
 type useCarResult = {
   loading: boolean;
   error?: ApolloError;
-  cars: Car[];
+  cars: Cars;
 };
 
 export function useCars(): useCarResult {

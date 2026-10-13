@@ -10,7 +10,7 @@ export function CarCard({ car }: CarCardProps) {
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
         sx={{ height: 140 }}
-        image={car.desktop}
+        image={car.desktop || car.tablet || car.mobile}
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">

@@ -10,7 +10,6 @@ type UseCarsSortingResult = {
   sortTerm: SortByTerm;
   setSortTerm: Dispatch<React.SetStateAction<SortByTerm>>;
   sortedCars: Cars;
-  sortOptions: Array<{ label: string, value: SortByTerm }>
 }
 
 const sortMap = {
@@ -21,19 +20,19 @@ const sortMap = {
   none: { by: 'make', sort: Sort.ASC },
 }
 
-export function useCarsSorting(cars: Cars): UseCarsSortingResult {
-  const sortOptions = [
-    { label: 'None', value: 'none' as SortByTerm },
-    { label: 'By Model Asc', value: 'model_asc' as SortByTerm },
-    { label: 'By Model Desc', value: 'model_desc' as SortByTerm },
-    { label: 'By Year Asc', value: 'year_asc' as SortByTerm },
-    { label: 'By Year Desc', value: 'year_desc' as SortByTerm },
-  ];
+export const sortOptions = [
+  { label: 'None', value: 'none' as SortByTerm },
+  { label: 'By Model Asc', value: 'model_asc' as SortByTerm },
+  { label: 'By Model Desc', value: 'model_desc' as SortByTerm },
+  { label: 'By Year Asc', value: 'year_asc' as SortByTerm },
+  { label: 'By Year Desc', value: 'year_desc' as SortByTerm },
+];
 
+export function useCarsSorting(cars: Cars): UseCarsSortingResult {
   const [sortTerm, setSortTerm] = useState<SortByTerm>('none');
 
   const { by, sort } = sortMap[sortTerm];
   const sortedCars = sortBy(cars, by as keyof Car, sort)
 
-  return { sortTerm, setSortTerm, sortedCars, sortOptions }
+  return { sortTerm, setSortTerm, sortedCars }
 }

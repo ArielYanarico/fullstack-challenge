@@ -1,15 +1,17 @@
 import { CarCardGrid } from "@/components/ui/CarCardGrid";
 import { CreateCarModal, defaultCarModalRef } from "@/components/ui/CreateCarModal";
 import { SearchInput } from "@/components/ui/SearchInput";
+import { YearFilter } from "@/components/ui/YearFilter";
+import { useCarFilter } from "@/hooks/useCarFilters";
 import { useCars } from "@/hooks/useCars";
-import { SortByTerm, useCarsSorting } from "@/hooks/useCarSorting";
+import { SortByTerm, sortOptions, useCarsSorting } from "@/hooks/useCarSorting";
 import { Button, Container, MenuItem, Stack, TextField, Typography } from "@mui/material";
 import { ChangeEvent, useRef } from "react";
 
 export function Cars() {
-
-  const { loading, error, cars, refetch } = useCars();
-  const { sortTerm, setSortTerm, sortedCars, sortOptions } = useCarsSorting(cars);
+  const { variables, setFilters } = useCarFilter();
+  const { loading, error, cars, refetch } = useCars(variables);
+  const { sortTerm, setSortTerm, sortedCars } = useCarsSorting(cars);
   console.log({ loading, error, cars });
 
   const createCarModal = useRef(defaultCarModalRef);
@@ -20,6 +22,14 @@ export function Cars() {
     const { target: { value } } = event;
     setSortTerm(value as SortByTerm)
   };
+
+  const handleSearchChange = (filter: string) => {
+    setFilters(prevFilters => ({...prevFilters, model: filter}))
+  }
+
+  const handleYearChange = (year: string) => {
+    setFilters(prevFilters => ({...prevFilters, year: Number(year)}))
+  }
 
   return (
     <Container maxWidth="md" sx={{ py: 6 }} >
@@ -33,7 +43,8 @@ export function Cars() {
       </Stack>
 
       <Stack spacing={1} mb={3} direction='row' justifyContent="space-between">
-        <SearchInput onChange={(text) => console.log(text)}/>
+        <SearchInput onChange={handleSearchChange}/>
+        <YearFilter onChange={handleYearChange} />
         <TextField
           select
           label="Sort"

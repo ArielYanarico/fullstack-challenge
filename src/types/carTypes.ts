@@ -10,3 +10,8 @@ export type Car = {
 };
 
 export type Cars = Car[];
+
+export type CarFilters = {
+  model?: string;
+  year?: number;
+};

@@ -2,6 +2,7 @@
 import { GET_CARS_GQL } from "@/services/carService";
 import { Cars } from "@/types/carTypes";
 import { ApolloError, ApolloQueryResult, OperationVariables, useQuery } from "@apollo/client";
+import { CarFilters } from "@/types/carTypes";
 
 type CarQueryResult = {
   cars: Cars
@@ -14,7 +15,7 @@ type UseCarsResult = {
   refetch: () => Promise<ApolloQueryResult<CarQueryResult>>;
 };
 
-export function useCars(): UseCarsResult {
+export function useCars(variables: CarFilters): UseCarsResult {
 
   const isMobileDevice = window.innerWidth <= 639;
   const isTabletDevice = window.innerWidth >= 640 && window.innerWidth < 1023;
@@ -25,6 +26,7 @@ export function useCars(): UseCarsResult {
       isMobile: isMobileDevice,
       isTablet: isTabletDevice,
       isDesktop: isDesktopDevice,
+      ...variables,
     }
   }
 

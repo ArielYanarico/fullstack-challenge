@@ -7,9 +7,8 @@ type SearchInputProps = {
 }
 
 export function SearchInput({ onChange }: SearchInputProps) {
-  const [searchTerm, setSearchTerm] = useState('');
-
-  const debouncedSearchTerm = useDebounce(searchTerm);
+  const [searchTerm, setSearchTerm] = useState<string>('');
+  const debouncedSearchTerm = useDebounce(searchTerm as string);
 
   useEffect(() => {
     if (debouncedSearchTerm) {
@@ -25,7 +24,6 @@ export function SearchInput({ onChange }: SearchInputProps) {
   return (
     <TextField
       size="small"
-      id="outlined-basic"
       label="Search"
       variant="outlined"
       value={searchTerm}

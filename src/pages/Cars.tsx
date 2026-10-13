@@ -4,8 +4,8 @@ import { Button, Card, CardContent, CardMedia, Chip, Container, Grid, Stack, Tex
 
 export function Cars() {
 
-  const { loading, error, data } = useCars();
-  console.log({ loading, error, data });
+  const { loading, error, cars } = useCars();
+  console.log({ loading, error, cars });
 
   return (
     <Container maxWidth="md" sx={{ py: 6 }} >
@@ -26,7 +26,7 @@ export function Cars() {
       </Stack>
 
       <Grid container spacing={2}>
-        {(data?.cars || []).map((car: any) => (
+        {(cars).map((car: any) => (
           <Grid size={4} key={car.id}>
             <Card sx={{ maxWidth: 345 }}>
               <CardMedia

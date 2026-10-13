@@ -14,7 +14,7 @@ export function CarCardGrid({ cars, loading }: CarCardGridProps) {
     return <LoadingState />
   }
 
-  if (!cars) {
+  if (!cars?.length) {
     return <EmptyState />
   }
 

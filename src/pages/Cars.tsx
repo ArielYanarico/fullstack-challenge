@@ -1,25 +1,10 @@
+import { useCars } from "@/hooks/useCars";
 import { Button, Card, CardContent, CardMedia, Chip, Container, Grid, Stack, TextField, Typography } from "@mui/material";
 
-import { gql } from "@apollo/client";
-import { useQuery } from "@apollo/client/react";
-
-const getCars = gql`
-  query GetCars {
-    id
-    make
-    model
-    year
-    color
-    mobile
-    tablet
-    desktop
-  }
-
-`;
 
 export function Cars() {
 
-  const { loading, error, data } = useQuery(getCars);
+  const { loading, error, data } = useCars();
   console.log({ loading, error, data });
 
   return (
@@ -42,7 +27,7 @@ export function Cars() {
 
       <Grid container spacing={2}>
         {(data?.cars || []).map((car: any) => (
-          <Grid size={4}>
+          <Grid size={4} key={car.id}>
             <Card sx={{ maxWidth: 345 }}>
               <CardMedia
                 sx={{ height: 140 }}
